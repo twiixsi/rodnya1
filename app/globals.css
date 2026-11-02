@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F8F1E8;
+  --foreground: #283D38;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F0E4D7;
+}
+::-webkit-scrollbar-thumb {
+  background: #C4B2A0;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #34785D;
+}
+
+/* Handwritten script typography */
+.font-handwritten {
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Botanical and decorative ornaments */
+.bg-botanical {
+  background-image: radial-gradient(#34785D 0.6px, transparent 0.6px);
+  background-size: 24px 24px;
+  opacity: 0.25;
+}
+
+/* Mobile viewport and safe areas */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+.safe-top {
+  padding-top: env(safe-area-inset-top, 16px);
+}
+
+/* Card hover animation */
+.card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgba(40, 61, 56, 0.12);
+}
+
+/* Leaflet map customizations */
+.leaflet-container {
+  font-family: inherit;
+  border-radius: 1.25rem;
+}
