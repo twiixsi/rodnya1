@@ -15,14 +15,13 @@ export function MobileBottomNav() {
   const navItems = [
     { label: 'Главная', href: '/', icon: Home },
     { label: 'Сервисы', href: '/benefits', icon: LayoutGrid },
-    { label: 'Чаты', href: '/chats', icon: MessageSquare, badge: totalUnreadMessages },
-    { label: 'Семья', href: '/family', icon: Users },
+    { label: 'Сообщения', href: '/chats', icon: MessageSquare, badge: totalUnreadMessages },
     { label: 'Профиль', href: '/dashboard', icon: User },
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-[#FFFDF9]/95 backdrop-blur-md border-t border-[#F0E4D7] px-2 py-1.5 safe-bottom shadow-lg">
-      <div className="max-w-md mx-auto grid grid-cols-5 items-center">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-[#FFFDF9]/95 backdrop-blur-md border-t border-[#F0E4D7] px-4 py-2 safe-bottom shadow-lg">
+      <div className="max-w-md mx-auto grid grid-cols-4 items-center">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.icon;

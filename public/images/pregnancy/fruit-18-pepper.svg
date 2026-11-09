@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1025 314" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDF7F2"/>
+      <stop offset="50%" stop-color="#F8ECE4"/>
+      <stop offset="100%" stop-color="#F5E6DD"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#803520" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1025" height="314" rx="20" fill="url(#bgGrad)"/>
+
+  <!-- Left Botanical Foliage -->
+  <g opacity="0.45" stroke="#CBB4A3" stroke-width="2" fill="none">
+    <path d="M 40,280 C 90,200 130,120 220,90" />
+    <path d="M 120,290 C 180,220 230,160 310,130" />
+    <path d="M 20,160 C 80,140 160,150 240,190" />
+    <path d="M 70,60 C 130,80 180,120 230,180" />
+  </g>
+  <g opacity="0.5" fill="#BFA997">
+    <ellipse cx="110" cy="190" rx="36" ry="16" transform="rotate(-30 110 190)"/>
+    <ellipse cx="170" cy="140" rx="40" ry="17" transform="rotate(-15 170 140)"/>
+    <ellipse cx="230" cy="100" rx="34" ry="15" transform="rotate(20 230 100)"/>
+    <ellipse cx="90" cy="100" rx="30" ry="14" transform="rotate(45 90 100)"/>
+    <ellipse cx="190" cy="220" rx="38" ry="16" transform="rotate(35 190 220)"/>
+    <ellipse cx="260" cy="180" rx="35" ry="15" transform="rotate(-20 260 180)"/>
+  </g>
+  <g opacity="0.38" fill="#5F7D8E">
+    <path d="M 140,250 C 160,210 200,200 240,220 C 220,260 180,270 140,250 Z"/>
+    <path d="M 260,110 C 290,80 330,90 340,120 C 310,140 280,130 260,110 Z"/>
+    <path d="M 60,220 C 80,180 120,190 130,220 C 110,240 80,240 60,220 Z"/>
+  </g>
+
+  <!-- Right Botanical Foliage -->
+  <g opacity="0.45" stroke="#CBB4A3" stroke-width="2" fill="none">
+    <path d="M 985,280 C 935,200 895,120 805,90" />
+    <path d="M 905,290 C 845,220 795,160 715,130" />
+    <path d="M 1005,160 C 945,140 865,150 785,190" />
+    <path d="M 955,60 C 895,80 845,120 795,180" />
+  </g>
+  <g opacity="0.5" fill="#BFA997">
+    <ellipse cx="915" cy="190" rx="36" ry="16" transform="rotate(30 915 190)"/>
+    <ellipse cx="855" cy="140" rx="40" ry="17" transform="rotate(15 855 140)"/>
+    <ellipse cx="795" cy="100" rx="34" ry="15" transform="rotate(-20 795 100)"/>
+    <ellipse cx="935" cy="100" rx="30" ry="14" transform="rotate(-45 935 100)"/>
+    <ellipse cx="835" cy="220" rx="38" ry="16" transform="rotate(-35 835 220)"/>
+    <ellipse cx="765" cy="180" rx="35" ry="15" transform="rotate(20 765 180)"/>
+  </g>
+  <g opacity="0.38" fill="#5F7D8E">
+    <path d="M 885,250 C 865,210 825,200 785,220 C 805,260 845,270 885,250 Z"/>
+    <path d="M 765,110 C 735,80 695,90 685,120 C 715,140 745,130 765,110 Z"/>
+    <path d="M 965,220 C 945,180 905,190 895,220 C 915,240 945,240 965,220 Z"/>
+  </g>
+
+  <!-- Central Fruit: Sweet Red Bell Pepper -->
+  <g transform="translate(512, 160)" filter="url(#shadow)">
+    <!-- Stem -->
+    <path d="M -8,-85 C -4,-115 14,-125 24,-120 C 20,-105 10,-95 2,-82 Z" fill="#4B6E43"/>
+    <path d="M -22,-82 C -15,-92 15,-92 22,-82 C 16,-75 -16,-75 -22,-82 Z" fill="#3D5A36"/>
+    
+    <!-- Pepper Body -->
+    <!-- Lobes -->
+    <path d="M -65,-40 C -85,-10 -80,45 -55,75 C -35,95 -10,98 0,96 C 10,98 35,95 55,75 C 80,45 85,-10 65,-40 C 45,-75 -45,-75 -65,-40 Z" fill="#D33526"/>
+    <!-- Left lobe curve -->
+    <path d="M -55,-40 C -75,-10 -70,45 -45,72 C -30,85 -10,88 -5,80 C -15,50 -20,-10 -35,-55 C -45,-55 -50,-50 -55,-40 Z" fill="#E64432"/>
+    <!-- Central highlight lobe -->
+    <path d="M -30,-50 C -15,10 -10,60 0,82 C 10,60 15,10 30,-50 C 15,-65 -15,-65 -30,-50 Z" fill="#ED5745"/>
+    <ellipse cx="-15" cy="-10" rx="12" ry="42" fill="#F88C7E" opacity="0.65" transform="rotate(-8 -15 -10)"/>
+    <!-- Right lobe -->
+    <path d="M 35,-55 C 20,-10 15,50 5,80 C 10,88 30,85 45,72 C 70,45 75,-10 55,-40 Z" fill="#B72719"/>
+  </g>
+</svg>

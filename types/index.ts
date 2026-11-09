@@ -1,4 +1,10 @@
-export type UserRole = 'user' | 'specialist' | 'moderator' | 'admin';
+export type UserRole = 
+  | 'user'                 // Обычный пользователь (семья, родитель)
+  | 'admin'                // Главный администратор сайта / портала
+  | 'doctor'               // Врач (страница для врача с чатами с людьми и приёмом)
+  | 'specialist'           // Специалист / психолог
+  | 'kindergarten_admin'   // Администратор от лица детских садов (принимает заявки в садик)
+  | 'hobby_admin';         // Администратор от лица кружков и секций (запись на кружок)
 
 export interface UserProfile {
   id: string;
@@ -20,6 +26,15 @@ export interface Child {
   gender: 'male' | 'female';
   photo_url?: string;
   notes?: string;
+  height_cm?: number;
+  weight_kg?: number;
+  blood_type?: string;
+  allergies?: string;
+  clinic_name?: string;
+  pediatrician_name?: string;
+  kindergarten_name?: string;
+  kindergarten_queue_number?: string;
+  hobbies?: string[];
 }
 
 export interface FamilyMember {
@@ -59,12 +74,16 @@ export interface BenefitCalculationInput {
   employment_status: 'employed' | 'maternity_leave' | 'student' | 'unemployed';
   average_monthly_income_per_capita?: number; // BYN
   housing_queue_needed?: boolean;
+  mother_monthly_wage?: number; // зарплата для больничного по беременности и родам
+  is_complicated_birth?: boolean; // 140 дней при осложненных или многоплодных родах
 }
 
 export interface BenefitCalculationResult {
   lump_sum_total_byn: number;
   monthly_total_byn: number;
   family_capital_byn: number;
+  maternity_leave_sick_leave_byn: number;
+  total_3_years_support_byn: number;
   calculated_at: string;
   matched_benefits: {
     benefit: Benefit;
@@ -72,6 +91,12 @@ export interface BenefitCalculationResult {
     period: string;
     note: string;
     qualification_reason: string;
+  }[];
+  laws_referenced: {
+    title: string;
+    article: string;
+    authority: string;
+    link: string;
   }[];
 }
 
@@ -136,7 +161,7 @@ export interface Consultation {
 export interface Institution {
   id: string;
   name: string;
-  type: 'kindergarten' | 'polyclinic' | 'family_center' | 'crisis_center' | 'accessible_space';
+  type: 'kindergarten' | 'polyclinic' | 'family_center' | 'crisis_center' | 'accessible_space' | 'maternity_store' | 'development_center' | 'hobby_club' | 'one_window' | 'leisure_food';
   address: string;
   city: string;
   district: string;
@@ -147,12 +172,64 @@ export interface Institution {
   description: string;
   image_url: string;
   free_spots?: number;
+  free_spots_nursery?: number; // места в яслях (1-3 года)
+  free_spots_garden?: number; // места в саду (3-6 лет)
+  age_range?: string; // напр. '0-3 года', '3-7 лет', 'для мам'
+  specialties?: string[]; // напр. ['бассейн', 'логопед', 'питание 50%']
+  tags?: string[];
+  groups_info?: string; // напр. '14 групп, 16 в группе'
   has_ramp: boolean;
   has_elevator: boolean;
   has_mother_child_room: boolean;
   rating: number;
   reviews_count: number;
   website_url?: string;
+  badge_text?: string;
+  admin_id?: string;
+  admin_name?: string;
+  admin_role?: 'kindergarten_admin' | 'hobby_admin' | 'doctor' | 'specialist' | 'admin' | string;
+  has_online_admin?: boolean;
+}
+
+export interface VaccineItem {
+  id: string;
+  disease: string;
+  vaccine_name: string;
+  age_label: string;
+  age_months_min: number;
+  is_mandatory: boolean;
+  description: string;
+  law_reference: string;
+  target_child_name?: string;
+  status?: 'completed' | 'scheduled' | 'overdue' | 'future';
+}
+
+export interface DoctorAppointment {
+  id: string;
+  specialist_id: string;
+  doctor_name: string;
+  specialty_label: string;
+  institution_name: string;
+  child_name: string;
+  date: string;
+  time: string;
+  type: 'online' | 'in_person';
+  notes?: string;
+  status: 'confirmed' | 'completed' | 'cancelled';
+}
+
+export interface KindergartenQueueApplication {
+  application_number: string;
+  child_name: string;
+  district: string;
+  registration_date: string;
+  queue_position: number;
+  total_in_category: number;
+  target_year: string;
+  preferred_kindergartens: string[];
+  status: 'registered' | 'direction_issued' | 'enrolled';
+  status_text: string;
+  administrative_authority: string;
 }
 
 export interface UserDocument {

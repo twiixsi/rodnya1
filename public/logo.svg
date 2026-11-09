@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 80" fill="none">
   <!-- Heart and Family Icon -->
   <g transform="translate(10, 10)">
     <!-- Stylized Heart Outline -->
@@ -19,11 +19,11 @@
   </g>
 
   <!-- Typography: Brand Name -->
-  <text x="82" y="44" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="28" fill="#283D38" letter-spacing="-0.5">Родныя</text>
+  <text x="82" y="44" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="26" fill="#283D38" letter-spacing="-0.5">Родные люди</text>
   
   <!-- Divider -->
-  <line x1="202" y1="26" x2="202" y2="52" stroke="#D3C7BC" stroke-width="1.5"/>
+  <line x1="262" y1="26" x2="262" y2="52" stroke="#D3C7BC" stroke-width="1.5"/>
 
   <!-- Slogan -->
-  <text x="214" y="42" font-family="'Caveat', cursive, sans-serif" font-weight="600" font-size="19" fill="#6B7C77">Забота. Поддержка. Будущее.</text>
+  <text x="276" y="42" font-family="'Caveat', cursive, sans-serif" font-weight="600" font-size="18" fill="#6B7C77">Забота. Поддержка. Будущее.</text>
 </svg>

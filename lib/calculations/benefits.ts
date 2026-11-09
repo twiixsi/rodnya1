@@ -1,10 +1,10 @@
 import { BenefitCalculationInput, BenefitCalculationResult } from '@/types';
 import { MOCK_BENEFITS } from '@/lib/supabase/mock-data';
 
-// Базовые социально-экономические нормативы Республики Беларусь (2026/2027)
+// Базовые социально-экономические нормативы Республики Беларусь (ноябрь 2026)
 export const BELARUS_ECONOMIC_CONSTANTS = {
-  BPM: 437.80, // Бюджет прожиточного минимума в среднем на душу населения (BYN)
-  SZP: 2415.70, // Среднемесячная заработная плата работников в республике (BYN)
+  BPM: 535.70, // Бюджет прожиточного минимума в среднем на душу населения (BYN)
+  SZP: 3099.30, // Среднемесячная заработная плата работников в республике (BYN)
   FAMILY_CAPITAL_AMOUNT: 31426.00, // Размер семейного капитала (BYN)
 };
 
@@ -144,11 +144,67 @@ export function calculateBelarusFamilyBenefits(input: BenefitCalculationInput): 
     }
   }
 
+  // 7. Пособие по беременности и родам (Больничный лист 126 или 140 дней)
+  // Положение Совмина РБ № 569 в редакции от 2024 г. (100% среднедневного заработка за 18 месяцев)
+  let maternity_leave_sick_leave_byn = 0;
+  const leaveDays = input.is_complicated_birth ? 140 : 126;
+  if (input.employment_status === 'employed' || input.employment_status === 'maternity_leave') {
+    const monthlyWage = input.mother_monthly_wage || 1950.00; // средняя зарплата по умолчанию
+    const dailyWage = monthlyWage / 30.4;
+    maternity_leave_sick_leave_byn = Math.round(dailyWage * leaveDays * 100) / 100;
+  } else if (input.employment_status === 'student') {
+    // Стипендия или минимальный норматив (100% БПМ)
+    const dailyMin = (BELARUS_ECONOMIC_CONSTANTS.BPM) / 30.4;
+    maternity_leave_sick_leave_byn = Math.round(dailyMin * leaveDays * 100) / 100;
+  }
+
+  // Общая сумма государственной финансовой поддержки за 3 года декрета
+  const total_3_years_support_byn = Math.round(
+    (lump_sum_total + (monthly_total * 36) + family_capital + maternity_leave_sick_leave_byn) * 100
+  ) / 100;
+
+  // Нормативно-правовая база Республики Беларусь
+  const laws_referenced = [
+    {
+      title: 'Закон Республики Беларусь № 7-З',
+      article: 'Статьи 9, 10, 13, 14',
+      authority: 'Министерство труда и социальной защиты РБ',
+      link: 'https://mintrud.gov.by'
+    },
+    {
+      title: 'Указ Президента Республики Беларусь № 345 «О семейном капитале»',
+      article: 'В редакции Указа № 69 от 23.02.2024 г.',
+      authority: 'Президент Республики Беларусь / ОАО «АСБ Беларусбанк»',
+      link: 'https://president.gov.by'
+    },
+    {
+      title: 'Указ Президента Республики Беларусь № 240',
+      article: 'Господдержка граждан при строительстве (реконструкции) жилья',
+      authority: 'Министерство архитектуры и строительства РБ',
+      link: 'https://mas.gov.by'
+    },
+    {
+      title: 'Постановление Совета Министров Республики Беларусь № 569',
+      article: 'Порядок назначения пособий по беременности и родам (ФСЗН)',
+      authority: 'Фонд социальной защиты населения РБ',
+      link: 'https://ssf.gov.by'
+    },
+    {
+      title: 'Постановление Совета Министров Республики Беларусь № 175',
+      article: 'Бесплатное обеспечение детским питанием детей первых двух лет жизни',
+      authority: 'Министерство труда и социальной защиты РБ',
+      link: 'https://mintrud.gov.by'
+    }
+  ];
+
   return {
     lump_sum_total_byn: Math.round(lump_sum_total * 100) / 100,
     monthly_total_byn: Math.round(monthly_total * 100) / 100,
     family_capital_byn: family_capital,
+    maternity_leave_sick_leave_byn,
+    total_3_years_support_byn,
     calculated_at: new Date().toISOString(),
-    matched_benefits
+    matched_benefits,
+    laws_referenced
   };
 }

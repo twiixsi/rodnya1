@@ -19,4 +19,24 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+let finalConfig = nextConfig;
+
+try {
+  const withPWAInit = (await import('@ducanh2912/next-pwa')).default;
+  const withPWA = withPWAInit({
+    dest: 'public',
+    cacheOnFrontEndNav: true,
+    aggressiveFrontEndNavCaching: true,
+    reloadOnOnline: true,
+    swMinify: true,
+    disable: process.env.NODE_ENV === 'development',
+    workboxOptions: {
+      disableDevLogs: true,
+    },
+  });
+  finalConfig = withPWA(nextConfig);
+} catch {
+  // Graceful fallback when @ducanh2912/next-pwa is not installed yet
+}
+
+export default finalConfig;

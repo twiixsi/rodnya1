@@ -123,7 +123,24 @@ export default function DocumentsPage() {
       </div>
 
       {/* Document Cards List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {filteredDocs.length === 0 ? (
+        <div className="bg-[#FFFDF9] rounded-4xl p-10 text-center border border-dashed border-[#DFD1C2] space-y-3">
+          <div className="w-14 h-14 rounded-full bg-[#F8F1E8] text-[#34785D] flex items-center justify-center mx-auto">
+            <FileText className="w-6 h-6" />
+          </div>
+          <h3 className="font-bold text-base text-[#283D38]">Документы ещё не добавлены</h3>
+          <p className="text-xs text-[#6B7C77] max-w-sm mx-auto">
+            Загрузите свидетельство о рождении, удостоверение многодетной семьи или справки для безопасного хранения в цифровой папке.
+          </p>
+          <button
+            onClick={() => setShowUploadModal(true)}
+            className="px-5 py-2.5 rounded-xl bg-[#34785D] hover:bg-[#245B49] text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
+          >
+            + Загрузить первый документ
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredDocs.map((doc) => (
           <div
             key={doc.id}
@@ -184,15 +201,6 @@ export default function DocumentsPage() {
           </div>
         ))}
       </div>
-
-      {filteredDocs.length === 0 && (
-        <div className="p-12 text-center bg-[#FFFDF9] rounded-4xl border border-[#F0E4D7] space-y-2">
-          <FileCheck className="w-12 h-12 text-[#34785D] mx-auto opacity-50" />
-          <h3 className="font-bold text-base text-[#283D38]">Документов не найдено</h3>
-          <p className="text-xs text-[#6B7C77]">
-            Попробуйте изменить поисковый запрос или добавьте новый документ.
-          </p>
-        </div>
       )}
 
       {/* Upload Document Modal */}

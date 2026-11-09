@@ -1,44 +1,57 @@
 {
-  "name": "Родныя — Цифровая экосистема семьи",
+  "name": "Родные люди",
   "short_name": "Родныя",
-  "description": "Единая платформа поддержки материнства, детства и семьи в Республике Беларусь",
+  "description": "Единая цифровая экосистема комплексной поддержки материнства, детства и семьи в Республике Беларусь",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#F8F1E8",
-  "theme_color": "#34785D",
+  "background_color": "#FFF9F5",
+  "theme_color": "#FFF9F5",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icons/icon-192.png",
+      "src": "/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "shortcuts": [
     {
       "name": "Калькулятор выплат",
       "url": "/benefits",
-      "description": "Расчёт пособий и выплат на детей"
+      "description": "Расчёт пособий и выплат на детей в Беларуси"
     },
     {
-      "name": "Семейный щит",
-      "url": "/psychology",
-      "description": "Экстренная психологическая помощь"
-    },
-    {
-      "name": "Здоровое поколение",
+      "name": "Врачи и запись",
       "url": "/health",
-      "description": "Календарь беременности и детского здоровья"
+      "description": "Запись к врачам и календарь беременности"
     },
     {
-      "name": "Социальный гид",
+      "name": "SOS-поддержка",
+      "url": "/psychology",
+      "description": "Экстренная психологическая помощь 24/7"
+    },
+    {
+      "name": "Инфраструктура",
       "url": "/infrastructure",
       "description": "Карта детских садов и доступной среды"
     }

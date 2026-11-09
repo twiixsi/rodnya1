@@ -7,7 +7,7 @@ import { Heart, Download, ShieldCheck, PhoneCall, ExternalLink } from 'lucide-re
 import { useApp } from '@/lib/context/app-context';
 
 export function Footer() {
-  const { isMobileLayout } = useApp();
+  const { isMobileLayout, setIsDownloadModalOpen } = useApp();
 
   return (
     <footer className={`bg-[#F0E4D7] border-t border-[#E5D7C7] text-[#283D38] ${isMobileLayout ? 'pb-20' : ''}`}>
@@ -16,12 +16,32 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Col 1: Brand & Idea */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="relative w-10 h-10">
-                <Image src="/logo-icon.svg" alt="Родныя" width={40} height={40} />
+            <Link href="/" className="flex items-center gap-3 select-none">
+              <div className="relative w-10 h-10 shrink-0 flex items-center justify-center">
+                <svg 
+                  viewBox="0 0 64 64" 
+                  fill="none" 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="w-10 h-10 drop-shadow-2xs"
+                >
+                  <path 
+                    d="M32 58 C13 42, 3 29, 3 18 C3 7, 12 2, 21 2 C27 2, 30 6, 32 10 C34 6, 37 2, 43 2 C52 2, 61 7, 61 18 C61 29, 51 42, 32 58 Z" 
+                    stroke="#E58A7D" 
+                    strokeWidth="3.5" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    fill="none"
+                  />
+                  <circle cx="22" cy="20" r="5" stroke="#34785D" strokeWidth="3" fill="#FFFDF9" />
+                  <path d="M12 38 C12 29, 18 27, 22 27 C26 27, 32 29, 32 38" stroke="#34785D" strokeWidth="3" strokeLinecap="round" fill="none" />
+                  <circle cx="42" cy="18" r="5" stroke="#245B49" strokeWidth="3" fill="#FFFDF9" />
+                  <path d="M32 38 C32 28, 38 26, 42 26 C46 26, 52 28, 52 38" stroke="#245B49" strokeWidth="3" strokeLinecap="round" fill="none" />
+                  <circle cx="32" cy="28" r="3.6" stroke="#E58A7D" strokeWidth="2.6" fill="#FFFDF9" />
+                  <path d="M25 44 C25 37, 28 35, 32 35 C36 35, 39 37, 39 44" stroke="#E58A7D" strokeWidth="2.6" strokeLinecap="round" fill="none" />
+                </svg>
               </div>
               <div>
-                <span className="text-2xl font-bold tracking-tight text-[#283D38]">Родныя</span>
+                <span className="text-2xl font-bold tracking-tight text-[#283D38]">Родные люди</span>
                 <p className="font-handwritten text-base text-[#6B7C77]">Забота. Поддержка. Будущее.</p>
               </div>
             </Link>
@@ -43,17 +63,15 @@ export function Footer() {
                   <Download className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-[#283D38]">Установите приложение «Родныя»</h4>
-                  <p className="text-[11px] text-[#6B7C77]">Доступно на Android и iOS (PWA)</p>
+                  <h4 className="text-xs font-bold text-[#283D38]">Установите приложение «Родные люди»</h4>
+                  <p className="text-[11px] text-[#6B7C77]">Android APK (4.8 МБ) + iOS PWA</p>
                 </div>
               </div>
               <button
-                onClick={() => {
-                  alert('Для установки приложения нажмите «Поделиться» → «На экран «Домой» (Safari) или «Установить приложение» в меню браузера (Chrome).');
-                }}
-                className="px-3 py-1.5 rounded-full bg-[#34785D] text-white text-xs font-semibold hover:bg-[#245B49] transition-colors shrink-0"
+                onClick={() => setIsDownloadModalOpen(true)}
+                className="px-3 py-1.5 rounded-full bg-[#34785D] text-white text-xs font-semibold hover:bg-[#245B49] transition-colors shrink-0 cursor-pointer"
               >
-                Установить
+                Скачать / Установить
               </button>
             </div>
           </div>

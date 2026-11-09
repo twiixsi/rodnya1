@@ -42,15 +42,29 @@ export default function AssistantPage() {
       sourceUrl: 'https://mintrud.gov.by',
       suggestedFollowUps: [
         'Какие выплаты положены при рождении второго ребёнка?',
-        'Как оформить семейный капитал?',
-        'Как встать на очередь в детский сад?',
-        'Куда обратиться за экстренной помощью?'
+        'Как рассчитывается декретный больничный (126 дней)?',
+        'Как встать на электронную очередь в детский сад?',
+        'Где купить товары для беременных и кормящих мам («Буслик», «Беллакт»)?',
+        'Какие центры раннего развития и детские кружки есть в Минске?',
+        'Как оформить семейный капитал 31 426 BYN?',
+        'Календарь обязательных прививок в Беларуси (Постановление № 42)'
       ],
       timestamp: '10:00'
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const QUICK_PROMPTS = [
+    { label: '🛍️ Магазины для мам («Буслик», «Беллакт»)', query: 'Где купить одежду для беременных, коляски и смеси в Минске?' },
+    { label: '🎨 Кружки и развитие детей', query: 'Какие центры раннего развития, плавание и кружки есть в Минске?' },
+    { label: '🏫 Очередь в детский сад («Одно окно»)', query: 'Как отслеживать электронную очередь в детский сад в Минске?' },
+    { label: '🩺 Запись к педиатру онлайн', query: 'Как записаться на прием к детскому врачу или педиатру?' },
+    { label: '💉 Прививки детям (Постановление № 42)', query: 'Какие прививки входят в Национальный календарь прививок Беларуси?' },
+    { label: '💰 Декретные (больничный 126 дней)', query: 'Как рассчитывается пособие по беременности и родам (больничный лист)?' },
+    { label: '🇧🇾 Семейный капитал 31 426 BYN', query: 'Кто имеет право на семейный капитал и как его досрочно использовать?' },
+    { label: '🏠 Субсидии на жильё (Указ № 240)', query: 'Какие жилищные льготы и субсидии положены семьям по Указу № 240?' }
+  ];
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -220,7 +234,21 @@ export default function AssistantPage() {
         </div>
 
         {/* Chat Input Bar */}
-        <div className="p-3 lg:p-4 bg-[#FFFDF9] border-t border-[#F0E4D7]">
+        <div className="p-3 lg:p-4 bg-[#FFFDF9] border-t border-[#F0E4D7] space-y-2.5">
+          {/* Quick Category Chips */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar text-[11px]">
+            {QUICK_PROMPTS.map((p, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => handleSendMessage(p.query)}
+                className="px-3 py-1.5 rounded-full bg-[#F8F1E8] hover:bg-[#E5EFE3] hover:text-[#34785D] text-[#556862] border border-[#E9DACB] transition-colors whitespace-nowrap shrink-0 font-medium"
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+
           <form
             onSubmit={(e) => {
               e.preventDefault();
